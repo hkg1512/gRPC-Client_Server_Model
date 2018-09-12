@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package TSDStreaming;
+
+service DataTransfer
+{
+	rpc MbSentDataToTsd (MbDataTransfer) returns (MbDatRecvResponse);
+}
+
+
+message  MbDataTransfer
+{
+string batchId = 1;
+repeated MbDataPacket mb_packet= 2;
+}
+
+message MbDataPacket
+{
+string mb_asset_id        = 1;
+string mb_unit            = 2;
+string mb_value           = 3;  
+string mb_status	  = 4;  
+string mb_time            = 5;  
+string mb_tag_type        = 6;
+}
+
+message MbDatRecvResponse
+{
+string mb_error_code = 1;
+string mb_batch_id   = 2;
+}
